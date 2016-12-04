@@ -1,27 +1,30 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
-Meteor.startup(function() {
+Meteor.startup(function () {
   if (Meteor.users.find().count() != 0) return;
 
-  Accounts.createUserWithPhone({
-    phone: '+972501234567',
+  Accounts.createUser({
+    email: 'aaa@aaa',
+    password: '23269808',
     profile: {
-      name: 'My friend 1'
+      name: 'My friend A'
     }
   });
 
-  Accounts.createUserWithPhone({
-    phone: '+972501234568',
+  Accounts.createUser({
+    email: 'bbb@bbb',
+    password: '23269808',
     profile: {
-      name: 'My friend 2'
+      name: 'My friend B'
     }
   });
 
-  Accounts.createUserWithPhone({
-    phone: '+972501234569',
+  Accounts.createUser({
+    email: 'ccc@ccc',
+    password: '23269808',
     profile: {
-      name: 'My friend 3'
+      name: 'My friend C'
     }
   });
 });

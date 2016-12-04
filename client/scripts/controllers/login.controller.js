@@ -4,11 +4,11 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 
 export default class LoginCtrl extends Controller {
   login() {
-    if (_.isEmpty(this.phone)) return;
+    if (_.isEmpty(this.email)) return;
 
     const confirmPopup = this.$ionicPopup.confirm({
-      title: 'Number confirmation',
-      template: '<div>' + this.phone + '</div><div>Is your phone number above correct?</div>',
+      title: 'Email confirmation',
+      template: '<div>' + this.email + '</div><div>Is your email correct?</div>',
       cssClass: 'text-center',
       okText: 'Yes',
       okType: 'button-positive button-clear',
@@ -16,21 +16,61 @@ export default class LoginCtrl extends Controller {
       cancelType: 'button-dark button-clear'
     });
 
+
     confirmPopup.then((res) => {
       if (!res) return;
 
       this.$ionicLoading.show({
-        template: 'Sending verification code...'
+        template: 'Loading...'
+      });
+      Meteor.loginWithPassword(this.email, this.password, (err) => {
+        if (err) {
+          this.$ionicLoading.hide();
+          this.handleError(err);
+        } else {
+          this.$state.go('profile');
+          this.$ionicLoading.hide();
+
+        }
       });
 
-      Accounts.requestPhoneVerification(this.phone, (err) => {
-        this.$ionicLoading.hide();
-        if (err) return this.handleError(err);
-        this.$state.go('confirmation', { phone: this.phone });
+     
+    });
+  }
+  register() {
+    if (_.isEmpty(this.email)) return;
+
+    const confirmPopup = this.$ionicPopup.confirm({
+      title: 'Email confirmation',
+      template: '<div>' + this.email + '</div><div>Is your email correct?</div>',
+      cssClass: 'text-center',
+      okText: 'Yes',
+      okType: 'button-positive button-clear',
+      cancelText: 'edit',
+      cancelType: 'button-dark button-clear'
+    });
+
+
+    confirmPopup.then((res) => {
+      if (!res) return;
+
+      this.$ionicLoading.show({
+        template: 'Loading...'
+      });
+
+
+      Accounts.createUser({email:this.email, password:this.password}, (err) => {
+        if (err) {
+          this.$ionicLoading.hide();
+          this.handleError(err);
+        } else {
+          this.$state.go('profile');
+          this.$ionicLoading.hide();
+
+        }
       });
     });
   }
-
   handleError(err) {
     this.$log.error('Login error ', err);
 
