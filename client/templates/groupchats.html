@@ -1,0 +1,26 @@
+<ion-view view-title="GroupChats">
+  <ion-nav-buttons side="right">
+    <button ng-click="groupchats.showNewGroupChatModal()" class="button button-clear button-positive button-icon ion-ios-compose-outline"></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="groupchat in groupchats.data | orderBy:'-lastGroupMessage.timestamp'"
+                class="item-groupchat item-remove-animate item-avatar item-icon-right"
+                type="item-text-wrap"
+                href="#/tab/groupchats/{{ groupchat._id }}">
+        <img ng-src="{{ groupchat | groupchatPicture }}">
+        <h2>{{ groupchat | groupchatName }}</h2>
+        <ng-switch on="groupchat.lastGroupMessage.type">
+          <p ng-switch-when="text">{{ groupchat.lastGroupMessage.text }}</p>
+          <p ng-switch-when="picture">image</p>
+        </ng-switch>
+        <span class="last-groupmessage-timestamp">{{ groupchat.lastGroupMessage.timestamp | calendar }}</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="groupchats.remove(groupchat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

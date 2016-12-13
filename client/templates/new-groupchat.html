@@ -1,0 +1,23 @@
+<ion-modal-view ng-controller="NewGroupChatCtrl as groupchat">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="groupchat.hideNewGroupChatModal()">Cancel</button>
+    </div>
+    <h1 class="title">New GroupChat</h1>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="groupchat.newGroupChat()">Next</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <ion-list ng-repeat="user in groupchat.users">
+        <ion-checkbox name="selected" ng-value="user._id">
+          <h2>{{ user.profile.name }}</h2>
+          <p>
+            Hey there! I am using meteor-Whatsapp with meteor.{{user._id}}
+          </p>
+        </ion-checkbox>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-modal-view>

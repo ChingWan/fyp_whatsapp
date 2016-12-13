@@ -4,6 +4,9 @@ import { Config, Runner } from 'angular-ecmascript/module-helpers';
 
 import chatsTemplateUrl from '../templates/chats.html';
 import chatTemplateUrl from '../templates/chat.html';
+import groupchatsTemplateUrl from '../templates/groupchats.html';
+import groupchatTemplateUrl from '../templates/groupchat.html';
+import newgroupchatTemplateUrl from '../templates/new-groupchat.html';
 import confirmationTemplateUrl from '../templates/confirmation.html';
 import loginTemplateUrl from '../templates/login.html';
 import profileTemplateUrl from '../templates/profile.html';
@@ -27,6 +30,9 @@ class RoutesConfig extends Config {
           user: this.isAuthorized,
           chats() {
             return Meteor.subscribe('chats');
+          },
+          groupchats() {
+            return Meteor.subscribe('groupchats');
           }
         }
       })
@@ -45,6 +51,33 @@ class RoutesConfig extends Config {
           'tab-chats': {
             templateUrl: chatTemplateUrl,
             controller: 'ChatCtrl as chat'
+          }
+        }
+      })
+      .state('tab.groupchats', {
+        url: '/groupchats',
+        views: {
+          'tab-groupchats': {
+            templateUrl: groupchatsTemplateUrl,
+            controller: 'GroupChatsCtrl as groupchats'
+          }
+        }
+      })
+      .state('tab.groupchat', {
+        url: '/groupchats/:groupchatId',
+        views: {
+          'tab-groupchats': {
+            templateUrl: groupchatTemplateUrl,
+            controller: 'GroupChatCtrl as groupchat'
+          }
+        }
+      })
+      .state('tab.newgroupchat', {
+        url: '/newgroupchat',
+        views: {
+          'tab-groupchats': {
+            templateUrl: newgroupchatTemplateUrl,
+            controller: 'NewGroupChatCtrl as newgroupchat'
           }
         }
       })
@@ -77,6 +110,8 @@ class RoutesConfig extends Config {
       });
 
     this.$urlRouterProvider.otherwise('tab/chats');
+    this.$urlRouterProvider.otherwise('tab/groupchats');
+
   }
 
   isAuthorized($auth) {
