@@ -65,7 +65,10 @@
     right: -11px;
     background-image: url(/groupmessage-mine.png)
   }
-
+  .name{
+    padding: 5px 7px;
+    word-wrap: break-word;
+  }
   .text {
     padding: 5px 7px;
     word-wrap: break-word;

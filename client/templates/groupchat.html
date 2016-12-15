@@ -7,6 +7,7 @@
       <div ng-repeat="groupmessage in groupchat.groupmessages" class="groupmessage-wrapper">
         <div class="groupmessage" ng-class="groupmessage.userId === $root.currentUser._id ? 'groupmessage-mine' : 'groupmessage-other'">
           <ng-switch on="groupmessage.type">
+            <div ng-switch-when="text" class="name">{{groupmessage.userName}}</div>
             <div ng-switch-when="text" class="text">{{ groupmessage.text }}</div>
             <div ng-switch-when="picture" class="picture">
               <img ng-src="{{ groupmessage.picture }}">
@@ -19,16 +20,14 @@
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable footer-groupchat item-input-inset">
     <button class="button button-clear button-icon button-positive icon ion-ios-upload-outline"></button>
-
     <label class="item-input-wrapper">
-      <input ng-model="groupchat.groupmessage"
-             dir="auto"
-             type="text"
-             on-return="groupchat.sendGroupMessage(); groupchat.closeKeyboard()"
-             on-focus="groupchat.inputUp()"
-             on-blur="groupchat.inputDown()"/>
+   <input ng-model="groupchat.groupmessage" 
+          dir="auto" 
+          type="text" 
+          on-return="groupchat.sendGroupMessage(); groupchat.closeKeyboard()"
+          on-focus="groupchat.inputUp()" 
+          on-blur="groupchat.inputDown()"/>
     </label>
-
     <span ng-if="groupchat.groupmessage.length > 0">
       <button ng-click="groupchat.sendGroupMessage()" class="button button-clear button-positive">Send</button>
     </span>

@@ -12,8 +12,9 @@
         <img ng-src="{{ groupchat | groupchatPicture }}">
         <h2>{{ groupchat | groupchatName }}</h2>
         <ng-switch on="groupchat.lastGroupMessage.type">
-          <p ng-switch-when="text">{{ groupchat.lastGroupMessage.text }}</p>
-          <p ng-switch-when="picture">image</p>
+         <p ng-switch-when="text">{{ groupchat.lastGroupMessage.userName }}</p>
+         <p ng-switch-when="text">{{ groupchat.lastGroupMessage.text }}</p>
+         <p ng-switch-when="picture">image</p>
         </ng-switch>
         <span class="last-groupmessage-timestamp">{{ groupchat.lastGroupMessage.timestamp | calendar }}</span>
         <i class="icon ion-chevron-right icon-accessory"></i>

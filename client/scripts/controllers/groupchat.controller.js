@@ -16,17 +16,17 @@ export default class GroupChatCtrl extends Controller {
       groupmessages() {
         return GroupMessages.find({ groupchatId: this.groupchatId });
       },
-
       data() {
         return GroupChats.findOne(this.groupchatId);
       }
     });
-  
+
 
     this.autoScroll();
   }
 
   sendPicture() {
+    let User = Meteor.users.findOne(this.currentUserId);
     MeteorCameraUI.getPicture({}, (err, data) => {
       if (err) return this.handleError(err);
 
@@ -34,17 +34,19 @@ export default class GroupChatCtrl extends Controller {
         picture: data,
         type: 'picture',
         groupchatId: this.groupchatId,
+        userName: User.profile.name
       });
     });
   }
 
   sendGroupMessage() {
+    let User = Meteor.users.findOne(this.currentUserId);
     if (_.isEmpty(this.groupmessage)) return;
-
     this.callMethod('newGroupMessage', {
       text: this.groupmessage,
       type: 'text',
       groupchatId: this.groupchatId,
+      userName: User.profile.name
     });
 
     delete this.groupmessage;
