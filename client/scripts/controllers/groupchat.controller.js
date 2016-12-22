@@ -24,8 +24,14 @@ export default class GroupChatCtrl extends Controller {
 
     this.autoScroll();
   }
+  goEdit(groupName) {
+      this.callMethod('updateGroupName', groupName,this.groupchatId, (err, groupchatId) => {
+      if (err) return this.handleError(err);
+      this.$state.go('groupprofile', {groupchatId:this.groupchatId});
 
-  sendPicture() {
+    });
+  }
+  sendGroupPicture() {
     let User = Meteor.users.findOne(this.currentUserId);
     MeteorCameraUI.getPicture({}, (err, data) => {
       if (err) return this.handleError(err);
@@ -104,4 +110,4 @@ export default class GroupChatCtrl extends Controller {
 }
 
 GroupChatCtrl.$name = 'GroupChatCtrl';
-GroupChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log'];
+GroupChatCtrl.$inject = ['$state','$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log'];

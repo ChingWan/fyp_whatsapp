@@ -10,7 +10,7 @@
                 type="item-text-wrap"
                 href="#/tab/groupchats/{{ groupchat._id }}">
         <img ng-src="{{ groupchat | groupchatPicture }}">
-        <h2>{{ groupchat | groupchatName }}</h2>
+        <h2>{{ groupchat.groupName }}</h2>
         <ng-switch on="groupchat.lastGroupMessage.type">
          <p ng-switch-when="text">{{ groupchat.lastGroupMessage.userName }}</p>
          <p ng-switch-when="text">{{ groupchat.lastGroupMessage.text }}</p>

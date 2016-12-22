@@ -11,7 +11,7 @@ export default class NewGroupChatCtrl extends Controller {
     this.helpers({
       users() {
         return Meteor.users.find({ _id: { $ne: this.currentUserId } });
-      }
+      }         
     });
   }
 
@@ -30,6 +30,7 @@ export default class NewGroupChatCtrl extends Controller {
     this.callMethod('newGroupChat', userId, (err, groupchatId) => {
       this.hideNewGroupChatModal();
       if (err) return this.handleError(err);
+      this.$state.go('groupprofile', { groupchatId });
 
     });
   }

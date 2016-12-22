@@ -10,6 +10,7 @@ import newgroupchatTemplateUrl from '../templates/new-groupchat.html';
 import confirmationTemplateUrl from '../templates/confirmation.html';
 import loginTemplateUrl from '../templates/login.html';
 import profileTemplateUrl from '../templates/profile.html';
+import groupprofileTemplateUrl from '../templates/groupprofile.html';
 import settingsTemplateUrl from '../templates/settings.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
@@ -95,6 +96,14 @@ class RoutesConfig extends Config {
         url: '/profile',
         templateUrl: profileTemplateUrl,
         controller: 'ProfileCtrl as profile',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
+      .state('groupprofile', {
+        url: '/groupprofile/:groupchatId',
+        templateUrl: groupprofileTemplateUrl,
+        controller: 'GroupProfileCtrl as groupprofile',
         resolve: {
           user: this.isAuthorized
         }

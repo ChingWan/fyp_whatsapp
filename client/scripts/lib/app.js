@@ -20,6 +20,7 @@ import LoginCtrl from '../controllers/login.controller';
 import NewChatCtrl from '../controllers/new-chat.controller';
 import NewGroupChatCtrl from '../controllers/new-groupchat.controller';
 import ProfileCtrl from '../controllers/profile.controller';
+import GroupProfileCtrl from '../controllers/groupprofile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
 import InputDirective from '../directives/input.directive';
 import CalendarFilter from '../filters/calendar.filter';
@@ -51,6 +52,7 @@ new Loader(App)
   .load(NewChatCtrl)
   .load(NewGroupChatCtrl)
   .load(ProfileCtrl)
+  .load(GroupProfileCtrl)
   .load(SettingsCtrl)
   .load(InputDirective)
   .load(CalendarFilter)

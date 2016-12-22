@@ -1,6 +1,6 @@
-<ion-view title="{{ groupchat.data | groupchatName }}">
+<ion-view title="{{ groupchat.data.groupName}}">
   <ion-nav-buttons side="right">
-    <button class="button button-clear"><img class="header-picture" ng-src="{{ groupchat.data | groupchatPicture }}"></button>
+    <button class="button button-clear" ng-click="groupchat.goEdit(groupchat.data.groupName)"><img class="header-picture"ng-src="{{ groupchat.data | groupchatPicture }}"></button>
   </ion-nav-buttons>
   <ion-content class="groupchat" delegate-handle="groupchatScroll">
     <div class="groupmessage-list">
@@ -8,6 +8,7 @@
         <div class="groupmessage" ng-class="groupmessage.userId === $root.currentUser._id ? 'groupmessage-mine' : 'groupmessage-other'">
           <ng-switch on="groupmessage.type">
             <div ng-switch-when="text" class="name">{{groupmessage.userName}}</div>
+            <div ng-switch-when="picture" class="name">{{groupmessage.userName}}</div>
             <div ng-switch-when="text" class="text">{{ groupmessage.text }}</div>
             <div ng-switch-when="picture" class="picture">
               <img ng-src="{{ groupmessage.picture }}">
@@ -32,7 +33,7 @@
       <button ng-click="groupchat.sendGroupMessage()" class="button button-clear button-positive">Send</button>
     </span>
     <span ng-if="!groupchat.groupmessage || groupchat.groupmessage.length === 0">
-      <button ng-click="groupchat.sendPicture()" class="button button-clear button-icon button-positive icon ion-ios-camera-outline"></button>
+      <button ng-click="groupchat.sendGroupPicture()" class="button button-clear button-icon button-positive icon ion-ios-camera-outline"></button>
       <i class="buttons-seperator icon ion-android-more-vertical"></i>
       <button class="button button-clear button-icon button-positive icon ion-ios-mic-outline"></button>
     </span>

@@ -1,0 +1,28 @@
+<ion-view title="GroupProfile">
+  <ion-nav-buttons side="right">
+    <button ng-click="groupprofile.updateGroupName()" ng-disabled="!groupprofile.groupname || groupprofile.groupname.length === 0" class="button button-clear button-positive">Done</button>
+  </ion-nav-buttons>
+
+  <ion-content class="groupprofile">
+    <a class="groupprofile-picture positive" ng-click="groupprofile.updateGroupPicture()">
+      <div ng-if="groupprofile.groupPicture">
+        <img ng-src="{{ groupprofile.groupPicture }}" alt="profile picture">
+        edit
+      </div>
+      <div ng-if="!groupprofile.groupPicture" class="upload-placehoder">
+        Add photo
+      </div>
+    </a>
+
+    <div class="instructions">
+      Enter your Group name and add an optional Group picture
+    </div>
+
+    <div class="list groupprofile-name">
+      <label class="item item-input" >
+        AAA:{{}}
+        <input ng-model="groupprofile.groupname" on-return="groupprofile.updateGroupName()" type="text" placeholder="Enter Your Group name">
+      </label>
+    </div>
+     </ion-content>
+</ion-view>
