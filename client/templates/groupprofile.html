@@ -20,9 +20,14 @@
 
     <div class="list groupprofile-name">
       <label class="item item-input" >
-        AAA:{{}}
-        <input ng-model="groupprofile.groupname" on-return="groupprofile.updateGroupName()" type="text" placeholder="Enter Your Group name">
+        <input ng-model="groupprofile.groupname" on-return="groupprofile.updateGroupName()" type="text" placeholder="Edit Group Name">
       </label>
     </div>
+       <ion-list ng-repeat="user in groupprofile.users">
+        <ion-checkbox name="selected" ng-value="user._id">
+          <h2>{{ user.profile.name }}</h2>
+         {{user.groupName}}
+        </ion-checkbox>
+      </ion-list>
      </ion-content>
 </ion-view>

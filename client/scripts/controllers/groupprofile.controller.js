@@ -7,9 +7,9 @@ export default class GroupProfileCtrl extends Controller {
   constructor() {
     super(...arguments);
     this.groupchatId = this.$state.params.groupchatId;
-  this.helpers({
-     
-      
+  this.helpers({ 
+    
+             
     });
   }
 

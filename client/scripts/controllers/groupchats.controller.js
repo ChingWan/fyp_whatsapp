@@ -11,12 +11,11 @@ export default class GroupChatsCtrl extends Controller {
       }
     });
   }
-
   showNewGroupChatModal() {
     this.NewGroupChat.showModal();
   }
   remove(groupchat) {
-    this.callMethod('removeGroupChat', groupchat._id);
+    this.callMethod('removeGroupChat', groupchat._id,this.currentUserId);
   }
 }
 
